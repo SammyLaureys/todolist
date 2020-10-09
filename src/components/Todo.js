@@ -5,13 +5,20 @@ import styled from "@emotion/styled";
 
 const ListItem = styled.div`
   font-size: xx-large;
+  margin-right: 10%;
 `;
 const CheckboxDiv = styled.div`
-  margin-left: 10%;
+  margin-left: 30%;
+  margin-right: 10%;
+  font-size: xx-large;
 `;
 
 const StyledUl = styled.div`
   width: 100%;
+`;
+
+const removeButton = styled.div`
+  text-align: right;
 `;
 
 function Todo({ todo, toggleComplete, removeTodo }) {
@@ -36,7 +43,7 @@ function Todo({ todo, toggleComplete, removeTodo }) {
             >
                 {todo.task}
             </ListItem>
-                <IconButton onClick={handleRemoveClick}>
+                <IconButton className={removeButton} onClick={handleRemoveClick}>
                         <CloseIcon />
                 </IconButton>
         </StyledUl>
