@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
 import styled from "@emotion/styled";
-import Todoform from "./components/todoform";
+import TodoForm from "./components/todoForm";
 import ToDoList from "./components/ToDoList";
 import Date from "./components/date";
 
@@ -32,6 +32,7 @@ const StyledDiv2 = styled.div`
 
 function App() {
     const [todos, setTodos] = useState([]);
+    const [kind, setKind] = useState("schooltaken");
 
     useEffect(() => {
         const storageTodos = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
@@ -72,10 +73,10 @@ function App() {
                 <Styledh1>
                     TO DO LIST
                 </Styledh1>
-                <Date/>
+                <Date setKind={setKind}/>
             </StyledDiv2>
             <StyledDiv>
-                <Todoform addTodo={addTodo} setTodos={setTodos} />
+                <TodoForm addTodo={addTodo} setTodos={setTodos} kind={kind}/>
                 <ToDoList
                     todos={todos}
                     removeTodo={removeTodo}

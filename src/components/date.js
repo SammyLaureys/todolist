@@ -9,16 +9,20 @@ const useStyles = makeStyles({
     },
 });
 
-function Date(){
+function Date({setKind}){
     const classes = useStyles();
+
+    function setKindSchoolTaken(){
+        setKind("schooltaken");
+    }
+
+    function setKindHuisTaken(){
+        setKind("huistaken");
+    }
+
 return(<>
-    <Button className={classes.button} type="submit">Ma</Button>
-    <Button className={classes.button} type="submit">Di</Button>
-    <Button className={classes.button} type="submit">Wo</Button>
-    <Button className={classes.button} type="submit">Do</Button>
-    <Button className={classes.button} type="submit">Vr</Button>
-    <Button className={classes.button} type="submit">Za</Button>
-    <Button className={classes.button} type="submit">Zo</Button>
+    <Button onClick={setKindSchoolTaken} className={classes.button} type="submit">Schooltaken</Button>
+    <Button onClick={setKindHuisTaken} className={classes.button} type="submit">Huistaken</Button>
     </>
 )
 }

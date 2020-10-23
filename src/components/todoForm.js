@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { makeStyles } from '@material-ui/core/styles';
 import Clear from "./clear";
+import styled from "@emotion/styled";
 
 const useStyles = makeStyles({
     textField: {
@@ -15,7 +16,11 @@ const useStyles = makeStyles({
     },
 });
 
-function Todoform({ addTodo,setTodos }) {
+const StyledH3 = styled.h3`
+  float: left;
+`;
+
+function TodoForm({ addTodo,setTodos,kind}) {
     const classes = useStyles();
     const [todo, setTodo] = useState({
         id: "",
@@ -37,6 +42,7 @@ function Todoform({ addTodo,setTodos }) {
 
     return (
             <form className="todo-form" onSubmit={handleSubmit}>
+                <StyledH3>{kind}</StyledH3>
                     <TextField className={classes.textField} placeholder={"Add task here."}
                         type="text"
                         name="task"
@@ -49,4 +55,4 @@ function Todoform({ addTodo,setTodos }) {
     );
 }
 
-export default Todoform;
+export default TodoForm;
