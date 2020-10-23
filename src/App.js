@@ -3,7 +3,7 @@ import "./App.css";
 import styled from "@emotion/styled";
 import TodoForm from "./components/todoForm";
 import ToDoList from "./components/ToDoList";
-import Date from "./components/date";
+import KindOfTask from "./components/date";
 
 const LOCAL_STORAGE_KEY = "react-todo-list-todos";
 
@@ -31,27 +31,44 @@ const StyledDiv2 = styled.div`
 `;
 
 function App() {
-    const [todos, setTodos] = useState([]);
+    const [homeTodos, setHomeTodos] = useState([]);
+    const [schoolTodos, setSchoolTodos] = useState([]);
     const [kind, setKind] = useState("schooltaken");
 
-    useEffect(() => {
-        const storageTodos = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
-        if (storageTodos) {
-            setTodos(storageTodos);
-        }
-    }, []);
-
-    useEffect(() => {
-        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(todos));
-    }, [todos]);
+    // useEffect(() => {
+    //     const storageTodos = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
+    //     if (storageTodos) {
+    //         setTodos(storageTodos);
+    //     }
+    // }, []);
+    //
+    // useEffect(() => {
+    //     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(todos));
+    // }, [todos]);
 
     function addTodo(todo) {
-        setTodos([todo, ...todos]);
+        if(kind==="schooltaken"){
+            setSchoolTodos([todo, ...schoolTodos])
+        }
+        else{
+            setHomeTodos([todo, ...homeTodos])
+        }
     }
 
     function toggleComplete(id) {
-        setTodos(
-            todos.map(todo => {
+        setHomeTodos(
+            homeTodos.map(todo => {
+                if (todo.id === id) {
+                    return {
+                        ...todo,
+                        completed: !todo.completed
+                    };
+                }
+                return todo;
+            })
+        );
+        setSchoolTodos(
+            schoolTodos.map(todo => {
                 if (todo.id === id) {
                     return {
                         ...todo,
@@ -64,7 +81,12 @@ function App() {
     }
 
     function removeTodo(id) {
-        setTodos(todos.filter(todo => todo.id !== id));
+        if(kind==="schooltaken"){
+            setSchoolTodos(schoolTodos.filter(todo => todo.id !== id))
+        }
+        else{
+            setHomeTodos(homeTodos.filter(todo => todo.id !== id))
+        }
     }
 
     return (
@@ -73,12 +95,14 @@ function App() {
                 <Styledh1>
                     TO DO LIST
                 </Styledh1>
-                <Date setKind={setKind}/>
+                <KindOfTask setKind={setKind}/>
             </StyledDiv2>
             <StyledDiv>
-                <TodoForm addTodo={addTodo} setTodos={setTodos} kind={kind}/>
+                <TodoForm addTodo={addTodo} setSchoolTodos={setSchoolTodos} setHomeTodos={setHomeTodos} kind={kind}/>
                 <ToDoList
-                    todos={todos}
+                    kind={kind}
+                    homeTodos={homeTodos}
+                    schoolTodos={schoolTodos}
                     removeTodo={removeTodo}
                     toggleComplete={toggleComplete}
                 />

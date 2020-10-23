@@ -9,10 +9,15 @@ const useStyles = makeStyles({
     },
 });
 
-function Clear({setTodos}){
+function Clear({setHomeTodos,setSchoolTodos,kind}){
     const classes = useStyles();
     function ClearAll(){
-        setTodos([]);
+        if(kind==="schooltaken"){
+            setSchoolTodos([])
+        }
+        else{
+            setHomeTodos([])
+        }
     }
     return(
         <Button onClick={ClearAll} className={classes.button} type="submit">Clear</Button>

@@ -9,7 +9,7 @@ const useStyles = makeStyles({
     },
 });
 
-function Date({setKind}){
+function KindOfTask({setKind}){
     const classes = useStyles();
 
     function setKindSchoolTaken(){
@@ -27,4 +27,4 @@ return(<>
 )
 }
 
-export default Date;
+export default KindOfTask;

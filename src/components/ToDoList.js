@@ -7,11 +7,13 @@ const StyledDiv = styled.div`
   margin-top: 3%;
 `;
 
-function ToDoList({ todos, removeTodo, toggleComplete }) {
-    return (
-        <StyledDiv>
-            <List>
-                {todos.map(todo => (
+
+function ToDoList({ homeTodos,schoolTodos, removeTodo, toggleComplete, kind }) {
+
+    function WichToDoList(){
+        if(kind==="schooltaken"){
+            return <List>
+                {schoolTodos.map(todo => (
                     <Todo
                         key={todo.id}
                         todo={todo}
@@ -20,6 +22,25 @@ function ToDoList({ todos, removeTodo, toggleComplete }) {
                     />
                 ))}
             </List>
+        }
+        else{
+            return <List>
+            {homeTodos.map(todo => (
+                <Todo
+                    key={todo.id}
+                    todo={todo}
+                    removeTodo={removeTodo}
+                    toggleComplete={toggleComplete}
+                />
+            ))}
+        </List>
+
+        }
+    }
+
+    return (
+        <StyledDiv>
+            <WichToDoList/>
         </StyledDiv>
     );
 }
