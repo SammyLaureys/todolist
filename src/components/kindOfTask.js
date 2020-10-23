@@ -22,7 +22,7 @@ function KindOfTask({setKind}){
 
 return(<>
     <Button onClick={setKindSchoolTaken} className={classes.button} type="submit">School tasks</Button>
-    <Button onClick={setKindHuisTaken} className={classes.button} type="submit">House tasks</Button>
+    <Button onClick={setKindHuisTaken} className={classes.button} type="submit">Home tasks</Button>
     </>
 )
 }
