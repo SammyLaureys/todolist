@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
 import styled from "@emotion/styled";
-import ToDoForm from "./components/ToDoForm";
+import Todoform from "./components/todoform";
 import ToDoList from "./components/ToDoList";
-import Date from "./components/Date";
-import Clear from "./components/Clear"
+import Date from "./components/date";
 
 const LOCAL_STORAGE_KEY = "react-todo-list-todos";
 
@@ -19,7 +18,7 @@ const StyledDiv = styled.div`
   margin: 2% 12%;
   padding: 0.5%;
   text-align: center;
-  height: 500px;
+  height: fit-content;
 `;
 
 const StyledDiv2 = styled.div`
@@ -28,10 +27,6 @@ const StyledDiv2 = styled.div`
   box-shadow: 0 0 50px 5px darkgray;
   margin: 2% 8%;
   padding: 0.5%;
-  text-align: center;
-`;
-
-const StyledDiv3 = styled.div`
   text-align: center;
 `;
 
@@ -79,11 +74,8 @@ function App() {
                 </Styledh1>
                 <Date/>
             </StyledDiv2>
-            <StyledDiv3>
-                <Clear setTodos={setTodos}/>
-            </StyledDiv3>
             <StyledDiv>
-                <ToDoForm addTodo={addTodo} />
+                <Todoform addTodo={addTodo} setTodos={setTodos} />
                 <ToDoList
                     todos={todos}
                     removeTodo={removeTodo}

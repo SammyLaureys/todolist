@@ -1,6 +1,6 @@
 import { List } from "@material-ui/core";
 import React from "react";
-import Todo from "./Todo";
+import Todo from "./todo";
 import styled from "@emotion/styled";
 
 const StyledDiv = styled.div`
