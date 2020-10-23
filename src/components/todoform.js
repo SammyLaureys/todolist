@@ -11,7 +11,7 @@ const useStyles = makeStyles({
     },
     button: {
         margin: '20px 30px 0px 20px',
-        background: 'linear-gradient(45deg, #33FFFF 30%, #33CEFF 80%)',
+        background: 'linear-gradient(45deg, #32CD32 30%, #00FF00 80%)',
     },
 });
 
@@ -37,7 +37,7 @@ function Todoform({ addTodo,setTodos }) {
 
     return (
             <form className="todo-form" onSubmit={handleSubmit}>
-                    <TextField className={classes.textField}
+                    <TextField className={classes.textField} placeholder={"Add task here."}
                         type="text"
                         name="task"
                         value={todo.task}

@@ -70,7 +70,7 @@ function App() {
         <div className="App">
             <StyledDiv2>
                 <Styledh1>
-                    To Do List
+                    TO DO LIST
                 </Styledh1>
                 <Date/>
             </StyledDiv2>
