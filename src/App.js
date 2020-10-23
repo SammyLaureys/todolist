@@ -5,7 +5,8 @@ import TodoForm from "./components/todoForm";
 import ToDoList from "./components/ToDoList";
 import KindOfTask from "./components/date";
 
-const LOCAL_STORAGE_KEY = "react-todo-list-todos";
+const LOCAL_SCHOOL_KEY = "react-todo-list-schoolTodos";
+const LOCAL_HOME_KEY = "react-todo-list-homeTodos";
 
 const Styledh1 = styled.h1`
   color: white;
@@ -35,16 +36,27 @@ function App() {
     const [schoolTodos, setSchoolTodos] = useState([]);
     const [kind, setKind] = useState("schooltaken");
 
-    // useEffect(() => {
-    //     const storageTodos = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
-    //     if (storageTodos) {
-    //         setTodos(storageTodos);
-    //     }
-    // }, []);
-    //
-    // useEffect(() => {
-    //     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(todos));
-    // }, [todos]);
+    useEffect(() => {
+        const storageSchoolTodos = JSON.parse(localStorage.getItem(LOCAL_SCHOOL_KEY));
+        if (storageSchoolTodos) {
+            setSchoolTodos(storageSchoolTodos);
+        }
+    }, []);
+
+    useEffect(() => {
+        const storageHomeTodos = JSON.parse(localStorage.getItem(LOCAL_HOME_KEY));
+        if (storageHomeTodos) {
+            setHomeTodos(storageHomeTodos);
+        }
+    }, []);
+
+    useEffect(() => {
+        localStorage.setItem(LOCAL_HOME_KEY, JSON.stringify(homeTodos));
+    }, [homeTodos]);
+
+    useEffect(() => {
+        localStorage.setItem(LOCAL_SCHOOL_KEY, JSON.stringify(schoolTodos));
+    }, [schoolTodos]);
 
     function addTodo(todo) {
         if(kind==="schooltaken"){
