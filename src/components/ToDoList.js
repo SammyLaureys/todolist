@@ -11,7 +11,7 @@ const StyledDiv = styled.div`
 function ToDoList({ homeTodos,schoolTodos, removeTodo, toggleComplete, kind }) {
 
     function WichToDoList(){
-        if(kind==="schooltaken"){
+        if(kind==="school tasks"){
             return <List>
                 {schoolTodos.map(todo => (
                     <Todo

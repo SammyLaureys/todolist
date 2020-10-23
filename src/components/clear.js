@@ -12,7 +12,7 @@ const useStyles = makeStyles({
 function Clear({setHomeTodos,setSchoolTodos,kind}){
     const classes = useStyles();
     function ClearAll(){
-        if(kind==="schooltaken"){
+        if(kind==="school tasks"){
             setSchoolTodos([])
         }
         else{

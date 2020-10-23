@@ -34,7 +34,7 @@ const StyledDiv2 = styled.div`
 function App() {
     const [homeTodos, setHomeTodos] = useState([]);
     const [schoolTodos, setSchoolTodos] = useState([]);
-    const [kind, setKind] = useState("schooltaken");
+    const [kind, setKind] = useState("school tasks");
 
     useEffect(() => {
         const storageSchoolTodos = JSON.parse(localStorage.getItem(LOCAL_SCHOOL_KEY));
@@ -59,7 +59,7 @@ function App() {
     }, [schoolTodos]);
 
     function addTodo(todo) {
-        if(kind==="schooltaken"){
+        if(kind==="school tasks"){
             setSchoolTodos([todo, ...schoolTodos])
         }
         else{
@@ -93,7 +93,7 @@ function App() {
     }
 
     function removeTodo(id) {
-        if(kind==="schooltaken"){
+        if(kind==="school tasks"){
             setSchoolTodos(schoolTodos.filter(todo => todo.id !== id))
         }
         else{
