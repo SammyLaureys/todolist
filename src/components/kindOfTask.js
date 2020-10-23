@@ -17,7 +17,7 @@ function KindOfTask({setKind}){
     }
 
     function setKindHuisTaken(){
-        setKind("house tasks");
+        setKind("home tasks");
     }
 
 return(<>

@@ -3,7 +3,7 @@ import "./App.css";
 import styled from "@emotion/styled";
 import TodoForm from "./components/todoForm";
 import ToDoList from "./components/ToDoList";
-import KindOfTask from "./components/date";
+import KindOfTask from "./components/kindOfTask";
 
 const LOCAL_SCHOOL_KEY = "react-todo-list-schoolTodos";
 const LOCAL_HOME_KEY = "react-todo-list-homeTodos";
