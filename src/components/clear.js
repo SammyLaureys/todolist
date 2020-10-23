@@ -20,7 +20,7 @@ function Clear({setHomeTodos,setSchoolTodos,kind}){
         }
     }
     return(
-        <Button onClick={ClearAll} className={classes.button} type="submit">Clear</Button>
+        <Button onClick={ClearAll} className={classes.button} type="submit">Delete all</Button>
     )
 }
 
