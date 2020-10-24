@@ -4,6 +4,7 @@ import styled from "@emotion/styled";
 import TodoForm from "./components/todoForm";
 import ToDoList from "./components/ToDoList";
 import KindOfTask from "./components/kindOfTask";
+import {ActiveToDoListProvider} from "./contexts/activeToDoListProvider";
 
 const LOCAL_SCHOOL_KEY = "react-todo-list-schoolTodos";
 const LOCAL_HOME_KEY = "react-todo-list-homeTodos";
@@ -103,22 +104,24 @@ function App() {
 
     return (
         <div className="App">
-            <StyledDiv2>
-                <Styledh1>
-                    TO DO LIST
-                </Styledh1>
-                <KindOfTask setKind={setKind}/>
-            </StyledDiv2>
-            <StyledDiv>
-                <TodoForm addTodo={addTodo} setSchoolTodos={setSchoolTodos} setHomeTodos={setHomeTodos} kind={kind}/>
-                <ToDoList
-                    kind={kind}
-                    homeTodos={homeTodos}
-                    schoolTodos={schoolTodos}
-                    removeTodo={removeTodo}
-                    toggleComplete={toggleComplete}
-                />
-            </StyledDiv>
+            <ActiveToDoListProvider>
+                <StyledDiv2>
+                    <Styledh1>
+                        TO DO LIST
+                    </Styledh1>
+                    <KindOfTask setKind={setKind}/>
+                </StyledDiv2>
+                <StyledDiv>
+                    <TodoForm addTodo={addTodo} setSchoolTodos={setSchoolTodos} setHomeTodos={setHomeTodos} kind={kind}/>
+                    <ToDoList
+                        kind={kind}
+                        homeTodos={homeTodos}
+                        schoolTodos={schoolTodos}
+                        removeTodo={removeTodo}
+                        toggleComplete={toggleComplete}
+                    />
+                </StyledDiv>
+            </ActiveToDoListProvider>
         </div>
     );
 }
