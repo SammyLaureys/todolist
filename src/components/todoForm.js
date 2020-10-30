@@ -43,13 +43,13 @@ function TodoForm({ addTodo,setSchoolTodos,setHomeTodos,kind}) {
     return (
             <form className="todo-form" onSubmit={handleSubmit}>
                 <StyledH3>{kind}</StyledH3>
-                    <TextField className={classes.textField} placeholder={"Add task here."}
+                    <TextField id="inputField" className={classes.textField} placeholder={"Add task here."}
                         type="text"
                         name="task"
                         value={todo.task}
                         onChange={handleTaskInputChange}
                     />
-                    <Button className={classes.button} type="submit">+</Button>
+                    <Button className={classes.button} id="+" type="submit">+</Button>
                     <Clear setSchoolTodos={setSchoolTodos} setHomeTodos={setHomeTodos} kind={kind}/>
             </form>
     );
