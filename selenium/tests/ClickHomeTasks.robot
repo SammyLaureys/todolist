@@ -6,5 +6,8 @@ Suite Teardown  Close browser
 
 *** Test Cases ***
 Click HOME TASKS
-    Click Element       //*[contains(text(),'HOME TASKS')]
+    Page Should Contain Button    HOME TASKS
+    Sleep                         3s
+    Click Button                  HOME TASKS
+    Sleep                         3s
     Close Browser
