@@ -10,4 +10,6 @@ Click HOME TASKS
     Sleep                         3s
     Click Button                  SCHOOL TASKS
     Sleep                         3s
+Check if page is set to school tasks
+    Page Should Contain           school tasks
     Close Browser

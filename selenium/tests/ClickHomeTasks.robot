@@ -10,4 +10,6 @@ Click HOME TASKS
     Sleep                         3s
     Click Button                  HOME TASKS
     Sleep                         3s
+Check if page is set to home tasks
+    Page Should Contain           home tasks
     Close Browser
