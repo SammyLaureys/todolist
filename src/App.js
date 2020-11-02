@@ -5,12 +5,19 @@ import TodoForm from "./components/todoForm";
 import ToDoList from "./components/ToDoList";
 import KindOfTask from "./components/kindOfTask";
 import {ActiveToDoListProvider} from "./contexts/activeToDoListProvider";
+import {ThemeProvider, createGlobalStyle} from "styled-components";
 
 const LOCAL_SCHOOL_KEY = "react-todo-list-schoolTodos";
 const LOCAL_HOME_KEY = "react-todo-list-homeTodos";
 
 const Styledh1 = styled.h1`
+  width: 100%;
   color: white;
+  float: left;
+`;
+const StyledButton = styled.label`
+  float: right;
+  
 `;
 const StyledDiv = styled.div`
   background-color: #323633;
@@ -32,10 +39,17 @@ const StyledDiv2 = styled.div`
   text-align: center;
 `;
 
+const GlobalStyle = createGlobalStyle`
+  body {
+    background-color: ${props => props.theme.mode === 'dark' ? '#323633' : '#EEE'};
+  }
+`;
+
 function App() {
     const [homeTodos, setHomeTodos] = useState([]);
     const [schoolTodos, setSchoolTodos] = useState([]);
     const [kind, setKind] = useState("school tasks");
+    const [theme, setTheme] = useState({mode: 'dark'});
 
     useEffect(() => {
         const storageSchoolTodos = JSON.parse(localStorage.getItem(LOCAL_SCHOOL_KEY));
@@ -103,26 +117,38 @@ function App() {
     }
 
     return (
-        <div className="App">
-            <ActiveToDoListProvider>
-                <StyledDiv2>
-                    <Styledh1>
-                        TO DO LIST
-                    </Styledh1>
-                    <KindOfTask setKind={setKind}/>
-                </StyledDiv2>
-                <StyledDiv>
-                    <TodoForm addTodo={addTodo} setSchoolTodos={setSchoolTodos} setHomeTodos={setHomeTodos} kind={kind}/>
-                    <ToDoList
-                        kind={kind}
-                        homeTodos={homeTodos}
-                        schoolTodos={schoolTodos}
-                        removeTodo={removeTodo}
-                        toggleComplete={toggleComplete}
-                    />
-                </StyledDiv>
-            </ActiveToDoListProvider>
-        </div>
+        <ThemeProvider theme={theme}>
+            <GlobalStyle/>
+                <div className="App">
+                    <ActiveToDoListProvider>
+                        <StyledDiv2>
+                            <StyledButton className="switch">
+                                <input type="checkbox" onClick={e =>
+                                    setTheme(
+                                        theme.mode === 'dark'
+                                            ? {mode: 'light'}
+                                            : {mode: 'dark'}
+                                    )}/>
+                                <span className="slider round"/>
+                            </StyledButton>
+                            <Styledh1>
+                                TO DO LIST
+                            </Styledh1>
+                            <KindOfTask setKind={setKind}/>
+                        </StyledDiv2>
+                        <StyledDiv>
+                            <TodoForm addTodo={addTodo} setSchoolTodos={setSchoolTodos} setHomeTodos={setHomeTodos} kind={kind}/>
+                            <ToDoList
+                                kind={kind}
+                                homeTodos={homeTodos}
+                                schoolTodos={schoolTodos}
+                                removeTodo={removeTodo}
+                                toggleComplete={toggleComplete}
+                            />
+                        </StyledDiv>
+                    </ActiveToDoListProvider>
+                </div>
+        </ThemeProvider>
     );
 }
 
