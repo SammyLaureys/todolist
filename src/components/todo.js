@@ -33,7 +33,7 @@ function Todo({ todo, toggleComplete, removeTodo }) {
     return (
         <StyledUl style={{ display: "flex" }}>
             <CheckboxDiv>
-                <Checkbox checked={todo.completed} onClick={handleCheckboxClick} />
+                <Checkbox style={{color: "white"}} checked={todo.completed} onClick={handleCheckboxClick} />
             </CheckboxDiv>
             <ListItem
                 variant="body1"
@@ -43,7 +43,7 @@ function Todo({ todo, toggleComplete, removeTodo }) {
             >
                 {todo.task}
             </ListItem>
-                <IconButton className={removeButton} onClick={handleRemoveClick}>
+                <IconButton style={{color: "white"}} className={removeButton} onClick={handleRemoveClick}>
                         <CloseIcon />
                 </IconButton>
         </StyledUl>
