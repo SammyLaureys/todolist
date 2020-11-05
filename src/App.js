@@ -13,7 +13,6 @@ const LOCAL_SHOPPING_KEY = "react-todo-list-shoppingTodos";
 
 const Styledh1 = styled.h1`
   width: 100%;
-  color: white;
   float: left;
 `;
 const StyledButton = styled.label`
@@ -21,7 +20,6 @@ const StyledButton = styled.label`
   
 `;
 const StyledDiv = styled.div`
-  background-color: #323633;
   color: white;
   border-radius: 10px;
   box-shadow: 0 0 50px 1px darkgray;
@@ -41,8 +39,18 @@ const StyledDiv2 = styled.div`
 `;
 
 const GlobalStyle = createGlobalStyle`
+  .div1{
+    background-color: ${props => props.theme.mode === 'dark' ? '#323633' : '#A9A9A9'};
+    color: ${props => props.theme.mode === 'dark' ? '#FFFFFF' : '#000000'};
+    box-shadow: ${props => props.theme.mode === 'dark' ? '0 0 50px 5px darkgray' : '0 0 50px 5px #545151'};
+  }
+  .div2{
+    background-color: ${props => props.theme.mode === 'dark' ? '#323633' : '#A9A9A9'};
+    color: ${props => props.theme.mode === 'dark' ? '#FFFFFF' : '#000000'};
+    box-shadow: ${props => props.theme.mode === 'dark' ? '0 0 50px 5px darkgray' : '0 0 50px 5px #545151'};
+  }
   body {
-    background-color: ${props => props.theme.mode === 'dark' ? '#323633' : '#EEE'};
+    background-color: ${props => props.theme.mode === 'dark' ? '#323633' : '#A9A9A9'};
   }
 `;
 
@@ -151,7 +159,7 @@ function App() {
             <GlobalStyle/>
                 <div className="App">
                     <ActiveToDoListProvider>
-                        <StyledDiv2>
+                        <StyledDiv2 className="div1">
                             <StyledButton id="switch" className="switch">
                                 <input type="checkbox" onClick={e =>
                                     setTheme(
@@ -166,7 +174,7 @@ function App() {
                             </Styledh1>
                             <KindOfTask setKind={setKind}/>
                         </StyledDiv2>
-                        <StyledDiv class="div2">
+                        <StyledDiv className="div2">
                             <TodoForm addTodo={addTodo} setSchoolTodos={setSchoolTodos} setHomeTodos={setHomeTodos} setShoppingTodos={setShoppingTodos} kind={kind}/>
                             <ToDoList
                                 kind={kind}
