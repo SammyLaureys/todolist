@@ -169,7 +169,7 @@ function App() {
                 <div className="App">
                     <ActiveToDoListProvider>
                         <StyledDiv2 className="div1">
-                            <Link to='/info'><HowToUse className="infoLink">How to use?</HowToUse></Link>
+                            <div><Link to='/info'><HowToUse className="infoLink">How to use?</HowToUse></Link></div>
                             <StyledButton id="switch" className="switch">
                                 <input type="checkbox" onClick={e =>
                                     setTheme(
