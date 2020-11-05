@@ -10,6 +10,5 @@ Click info
     Wait Until Element Is Enabled  id:switch
     Click Element  id:switch
     Sleep                            3s
-Check if page is set to info
-    Page Should Contain              How to use the app:
+    Click Element  id:switch
     Close Browser

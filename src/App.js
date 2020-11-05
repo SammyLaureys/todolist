@@ -26,6 +26,7 @@ const StyledButton = styled.label`
 const HowToUse = styled.p`
   float: left;
   text-decoration: none;
+  padding: 1%;
 `;
 
 const StyledDiv = styled.div`
