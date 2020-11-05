@@ -1,11 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 import "./App.css";
 import styled from "@emotion/styled";
 import TodoForm from "./components/todoForm";
 import ToDoList from "./components/ToDoList";
 import KindOfTask from "./components/kindOfTask";
+import Info from "./components/info";
+import {Link} from "react-router-dom";
 import {ActiveToDoListProvider} from "./contexts/activeToDoListProvider";
 import {ThemeProvider, createGlobalStyle} from "styled-components";
+import {HashRouter, Switch, Route} from "react-router-dom";
 
 const LOCAL_SCHOOL_KEY = "react-todo-list-schoolTodos";
 const LOCAL_HOME_KEY = "react-todo-list-homeTodos";
@@ -15,10 +18,16 @@ const Styledh1 = styled.h1`
   width: 100%;
   float: left;
 `;
+
 const StyledButton = styled.label`
   float: right;
-  
 `;
+
+const HowToUse = styled.p`
+  float: left;
+  text-decoration: none;
+`;
+
 const StyledDiv = styled.div`
   color: white;
   border-radius: 10px;
@@ -48,6 +57,9 @@ const GlobalStyle = createGlobalStyle`
     background-color: ${props => props.theme.mode === 'dark' ? '#323633' : '#A9A9A9'};
     color: ${props => props.theme.mode === 'dark' ? '#FFFFFF' : '#000000'};
     box-shadow: ${props => props.theme.mode === 'dark' ? '0 0 50px 5px darkgray' : '0 0 50px 5px #545151'};
+  }
+  .infoLink{
+    color: ${props => props.theme.mode === 'dark' ? '#FFFFFF' : '#000000'};
   }
   body {
     background-color: ${props => props.theme.mode === 'dark' ? '#323633' : '#A9A9A9'};
@@ -95,13 +107,11 @@ function App() {
     }, [shoppingTodos]);
 
     function addTodo(todo) {
-        if(kind==="school tasks"){
+        if (kind === "school tasks") {
             setSchoolTodos([todo, ...schoolTodos])
-        }
-        else if(kind==="home tasks"){
+        } else if (kind === "home tasks") {
             setHomeTodos([todo, ...homeTodos])
-        }
-        else{
+        } else {
             setShoppingTodos([todo, ...shoppingTodos])
         }
     }
@@ -143,23 +153,24 @@ function App() {
     }
 
     function removeTodo(id) {
-        if(kind==="school tasks"){
+        if (kind === "school tasks") {
             setSchoolTodos(schoolTodos.filter(todo => todo.id !== id))
-        }
-        else if(kind==="home tasks"){
+        } else if (kind === "home tasks") {
             setHomeTodos(homeTodos.filter(todo => todo.id !== id))
-        }
-        else{
+        } else {
             setShoppingTodos(shoppingTodos.filter(todo => todo.id !== id))
         }
     }
 
     return (
-        <ThemeProvider theme={theme}>
-            <GlobalStyle/>
+        <HashRouter basename="/tasks">
+            <ThemeProvider theme={theme}>
+                <GlobalStyle/>
                 <div className="App">
                     <ActiveToDoListProvider>
+
                         <StyledDiv2 className="div1">
+                            <Link to='/info'><HowToUse className="infoLink">How to use?</HowToUse></Link>
                             <StyledButton id="switch" className="switch">
                                 <input type="checkbox" onClick={e =>
                                     setTheme(
@@ -174,20 +185,37 @@ function App() {
                             </Styledh1>
                             <KindOfTask setKind={setKind}/>
                         </StyledDiv2>
-                        <StyledDiv className="div2">
-                            <TodoForm addTodo={addTodo} setSchoolTodos={setSchoolTodos} setHomeTodos={setHomeTodos} setShoppingTodos={setShoppingTodos} kind={kind}/>
-                            <ToDoList
-                                kind={kind}
-                                homeTodos={homeTodos}
-                                schoolTodos={schoolTodos}
-                                shoppingTodos={shoppingTodos}
-                                removeTodo={removeTodo}
-                                toggleComplete={toggleComplete}
-                            />
-                        </StyledDiv>
+
+
+                        <Switch>
+                            <Route path="/info" exact>
+                                <StyledDiv className="div2">
+                                    <Info/>
+                                </StyledDiv>
+                            </Route>
+                            <Route path="/">
+                                <StyledDiv className="div2">
+                                    <TodoForm addTodo={addTodo} setSchoolTodos={setSchoolTodos}
+                                              setHomeTodos={setHomeTodos}
+                                              setShoppingTodos={setShoppingTodos}
+                                              kind={kind}/>
+                                    <ToDoList
+                                        kind={kind}
+                                        homeTodos={homeTodos}
+                                        schoolTodos={schoolTodos}
+                                        shoppingTodos={shoppingTodos}
+                                        removeTodo={removeTodo}
+                                        toggleComplete={toggleComplete}
+                                    />
+                                </StyledDiv>
+                            </Route>
+                        </Switch>
+
+
                     </ActiveToDoListProvider>
                 </div>
-        </ThemeProvider>
+            </ThemeProvider>
+        </HashRouter>
     );
 }
 

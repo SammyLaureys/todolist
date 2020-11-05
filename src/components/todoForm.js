@@ -20,7 +20,7 @@ const StyledH3 = styled.h3`
   float: left;
 `;
 
-function TodoForm({ addTodo,setSchoolTodos,setHomeTodos,kind}) {
+function TodoForm({ addTodo,setSchoolTodos,setHomeTodos, setShoppingTodos,kind}) {
     const classes = useStyles();
     const [todo, setTodo] = useState({
         id: "",
@@ -50,7 +50,7 @@ function TodoForm({ addTodo,setSchoolTodos,setHomeTodos,kind}) {
                         onChange={handleTaskInputChange}
                     />
                     <Button className={classes.button} id="+" type="submit">+</Button>
-                    <Clear setSchoolTodos={setSchoolTodos} setHomeTodos={setHomeTodos} kind={kind}/>
+                    <Clear setSchoolTodos={setSchoolTodos} setHomeTodos={setHomeTodos} setShoppingTodos={setShoppingTodos} kind={kind}/>
             </form>
     );
 }

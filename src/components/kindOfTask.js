@@ -1,6 +1,7 @@
 import React from "react";
 import {Button} from "@material-ui/core";
 import {makeStyles} from "@material-ui/core/styles";
+import {Link} from "react-router-dom";
 
 const useStyles = makeStyles({
     button: {
@@ -24,9 +25,15 @@ function KindOfTask({setKind}){
     }
 
 return(<>
-        <Button onClick={setKindSchoolTaken} id="SCHOOL TASKS" className={classes.button} type="submit">School tasks</Button>
-        <Button onClick={setKindHuisTaken} id="HOME TASKS" className={classes.button} type="submit">Home tasks</Button>
-        <Button onClick={setKindShoppingTaken} id="SHOPPING TASKS" className={classes.button} type="submit">Shopping tasks</Button>
+        <Link to='/' style={{textDecoration: 'none'}}>
+            <Button onClick={setKindSchoolTaken} id="SCHOOL TASKS" className={classes.button} type="submit">School tasks</Button>
+        </Link>
+        <Link to='/' style={{textDecoration: 'none'}}>
+            <Button onClick={setKindHuisTaken} id="HOME TASKS" className={classes.button} type="submit">Home tasks</Button>
+        </Link>
+        <Link to='/' style={{textDecoration: 'none'}}>
+            <Button onClick={setKindShoppingTaken} id="SHOPPING TASKS" className={classes.button} type="submit">Shopping tasks</Button>
+        </Link>
     </>
 )
 }

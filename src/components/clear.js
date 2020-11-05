@@ -9,14 +9,17 @@ const useStyles = makeStyles({
     },
 });
 
-function Clear({setHomeTodos,setSchoolTodos,kind}){
+function Clear({setHomeTodos,setSchoolTodos, setShoppingTodos, kind}){
     const classes = useStyles();
     function ClearAll(){
         if(kind==="school tasks"){
             setSchoolTodos([])
         }
-        else{
+        else if(kind==="home tasks"){
             setHomeTodos([])
+        }
+        else{
+            setShoppingTodos([])
         }
     }
     return(
