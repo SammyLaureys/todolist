@@ -6,9 +6,8 @@ Suite Teardown  Close browser
 
 *** Test Cases ***
 Click info
-    Page Should Contain Link  link:How to use?
     Sleep                            3s
-    Click Link  link:How to use?
+    Click Link  xpath://a[text()='How to use?']
     Sleep                            3s
 Check if page is set to info
     Page Should Contain              How to use the app:
