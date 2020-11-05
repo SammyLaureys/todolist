@@ -168,7 +168,6 @@ function App() {
                 <GlobalStyle/>
                 <div className="App">
                     <ActiveToDoListProvider>
-
                         <StyledDiv2 className="div1">
                             <Link to='/info'><HowToUse className="infoLink">How to use?</HowToUse></Link>
                             <StyledButton id="switch" className="switch">
@@ -185,8 +184,6 @@ function App() {
                             </Styledh1>
                             <KindOfTask setKind={setKind}/>
                         </StyledDiv2>
-
-
                         <Switch>
                             <Route path="/info" exact>
                                 <StyledDiv className="div2">
@@ -210,8 +207,6 @@ function App() {
                                 </StyledDiv>
                             </Route>
                         </Switch>
-
-
                     </ActiveToDoListProvider>
                 </div>
             </ThemeProvider>
