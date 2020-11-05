@@ -19,10 +19,14 @@ function KindOfTask({setKind}){
     function setKindHuisTaken(){
         setKind("home tasks");
     }
+    function setKindShoppingTaken(){
+        setKind("shopping tasks");
+    }
 
 return(<>
-    <Button onClick={setKindSchoolTaken} id="SCHOOL TASKS" className={classes.button} type="submit">School tasks</Button>
-    <Button onClick={setKindHuisTaken} id="HOME TASKS" className={classes.button} type="submit">Home tasks</Button>
+        <Button onClick={setKindSchoolTaken} id="SCHOOL TASKS" className={classes.button} type="submit">School tasks</Button>
+        <Button onClick={setKindHuisTaken} id="HOME TASKS" className={classes.button} type="submit">Home tasks</Button>
+        <Button onClick={setKindShoppingTaken} id="SHOPPING TASKS" className={classes.button} type="submit">Shopping tasks</Button>
     </>
 )
 }

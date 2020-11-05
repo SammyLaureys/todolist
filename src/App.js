@@ -9,6 +9,7 @@ import {ThemeProvider, createGlobalStyle} from "styled-components";
 
 const LOCAL_SCHOOL_KEY = "react-todo-list-schoolTodos";
 const LOCAL_HOME_KEY = "react-todo-list-homeTodos";
+const LOCAL_SHOPPING_KEY = "react-todo-list-shoppingTodos";
 
 const Styledh1 = styled.h1`
   width: 100%;
@@ -48,6 +49,7 @@ const GlobalStyle = createGlobalStyle`
 function App() {
     const [homeTodos, setHomeTodos] = useState([]);
     const [schoolTodos, setSchoolTodos] = useState([]);
+    const [shoppingTodos, setShoppingTodos] = useState([]);
     const [kind, setKind] = useState("school tasks");
     const [theme, setTheme] = useState({mode: 'dark'});
 
@@ -66,6 +68,13 @@ function App() {
     }, []);
 
     useEffect(() => {
+        const storageShoppingTodos = JSON.parse(localStorage.getItem(LOCAL_SHOPPING_KEY));
+        if (storageShoppingTodos) {
+            setShoppingTodos(storageShoppingTodos);
+        }
+    }, []);
+
+    useEffect(() => {
         localStorage.setItem(LOCAL_HOME_KEY, JSON.stringify(homeTodos));
     }, [homeTodos]);
 
@@ -73,12 +82,19 @@ function App() {
         localStorage.setItem(LOCAL_SCHOOL_KEY, JSON.stringify(schoolTodos));
     }, [schoolTodos]);
 
+    useEffect(() => {
+        localStorage.setItem(LOCAL_SHOPPING_KEY, JSON.stringify(shoppingTodos));
+    }, [shoppingTodos]);
+
     function addTodo(todo) {
         if(kind==="school tasks"){
             setSchoolTodos([todo, ...schoolTodos])
         }
-        else{
+        else if(kind==="home tasks"){
             setHomeTodos([todo, ...homeTodos])
+        }
+        else{
+            setShoppingTodos([todo, ...shoppingTodos])
         }
     }
 
@@ -105,14 +121,28 @@ function App() {
                 return todo;
             })
         );
+        setShoppingTodos(
+            shoppingTodos.map(todo => {
+                if (todo.id === id) {
+                    return {
+                        ...todo,
+                        completed: !todo.completed
+                    };
+                }
+                return todo;
+            })
+        );
     }
 
     function removeTodo(id) {
         if(kind==="school tasks"){
             setSchoolTodos(schoolTodos.filter(todo => todo.id !== id))
         }
-        else{
+        else if(kind==="home tasks"){
             setHomeTodos(homeTodos.filter(todo => todo.id !== id))
+        }
+        else{
+            setShoppingTodos(shoppingTodos.filter(todo => todo.id !== id))
         }
     }
 
@@ -122,7 +152,7 @@ function App() {
                 <div className="App">
                     <ActiveToDoListProvider>
                         <StyledDiv2>
-                            <StyledButton className="switch">
+                            <StyledButton id="switch" className="switch">
                                 <input type="checkbox" onClick={e =>
                                     setTheme(
                                         theme.mode === 'dark'
@@ -136,12 +166,13 @@ function App() {
                             </Styledh1>
                             <KindOfTask setKind={setKind}/>
                         </StyledDiv2>
-                        <StyledDiv>
-                            <TodoForm addTodo={addTodo} setSchoolTodos={setSchoolTodos} setHomeTodos={setHomeTodos} kind={kind}/>
+                        <StyledDiv class="div2">
+                            <TodoForm addTodo={addTodo} setSchoolTodos={setSchoolTodos} setHomeTodos={setHomeTodos} setShoppingTodos={setShoppingTodos} kind={kind}/>
                             <ToDoList
                                 kind={kind}
                                 homeTodos={homeTodos}
                                 schoolTodos={schoolTodos}
+                                shoppingTodos={shoppingTodos}
                                 removeTodo={removeTodo}
                                 toggleComplete={toggleComplete}
                             />

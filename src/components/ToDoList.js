@@ -8,7 +8,7 @@ const StyledDiv = styled.div`
 `;
 
 
-function ToDoList({ homeTodos,schoolTodos, removeTodo, toggleComplete, kind }) {
+function ToDoList({ homeTodos, schoolTodos, shoppingTodos, removeTodo, toggleComplete, kind }) {
 
     function WichToDoList(){
         if(kind==="school tasks"){
@@ -23,9 +23,21 @@ function ToDoList({ homeTodos,schoolTodos, removeTodo, toggleComplete, kind }) {
                 ))}
             </List>
         }
+        else if(kind==="home tasks"){
+            return <List>
+                {homeTodos.map(todo => (
+                    <Todo
+                        key={todo.id}
+                        todo={todo}
+                        removeTodo={removeTodo}
+                        toggleComplete={toggleComplete}
+                    />
+                ))}
+            </List>
+        }
         else{
             return <List>
-            {homeTodos.map(todo => (
+            {shoppingTodos.map(todo => (
                 <Todo
                     key={todo.id}
                     todo={todo}
