@@ -11,4 +11,5 @@ Click info
     Click Element  id:switch
     Sleep                            3s
     Click Element  id:switch
+    Sleep                            3s
     Close Browser
