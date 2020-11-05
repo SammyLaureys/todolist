@@ -26,7 +26,6 @@ const StyledButton = styled.label`
 const HowToUse = styled.p`
   float: left;
   text-decoration: none;
-  padding: 1%;
 `;
 
 const StyledDiv = styled.div`
@@ -170,7 +169,7 @@ function App() {
                 <div className="App">
                     <ActiveToDoListProvider>
                         <StyledDiv2 className="div1">
-                            <div><Link id="link" to='/info'><HowToUse className="infoLink">How to use?</HowToUse></Link></div>
+                            <Link to='/info'><HowToUse className="infoLink">How to use?</HowToUse></Link>
                             <StyledButton id="switch" className="switch">
                                 <input type="checkbox" onClick={e =>
                                     setTheme(
