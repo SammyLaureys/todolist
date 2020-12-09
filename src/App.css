@@ -61,3 +61,15 @@ input:checked + .slider:before {
 .slider.round:before {
     border-radius: 50%;
 }
+
+.left{
+    margin-left: 25%;
+    margin-right: 5%;
+    font-size: xx-large;
+}
+
+@media (max-width: 600px) {
+    .left {
+        margin-left: 2%;
+    }
+}

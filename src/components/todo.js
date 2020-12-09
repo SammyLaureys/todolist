@@ -2,15 +2,11 @@ import { Checkbox, IconButton} from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
 import React from "react";
 import styled from "@emotion/styled";
+import "../App.css";
 
 const ListItem = styled.div`
   font-size: xx-large;
-  margin-right: 10%;
-`;
-const CheckboxDiv = styled.div`
-  margin-left: 30%;
-  margin-right: 10%;
-  font-size: xx-large;
+  margin-right: 5%;
 `;
 
 const StyledUl = styled.div`
@@ -32,9 +28,9 @@ function Todo({ todo, toggleComplete, removeTodo }) {
 
     return (
         <StyledUl style={{ display: "flex" }}>
-            <CheckboxDiv>
+            <div className={"left"}>
                 <Checkbox style={{color: "white"}} checked={todo.completed} onClick={handleCheckboxClick} />
-            </CheckboxDiv>
+            </div>
             <ListItem
                 variant="body1"
                 style={{
