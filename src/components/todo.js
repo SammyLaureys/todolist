@@ -4,11 +4,6 @@ import React from "react";
 import styled from "@emotion/styled";
 import "../App.css";
 
-const ListItem = styled.div`
-  font-size: xx-large;
-  margin-right: 5%;
-`;
-
 const StyledUl = styled.div`
   width: 100%;
 `;
@@ -31,14 +26,13 @@ function Todo({ todo, toggleComplete, removeTodo }) {
             <div className={"left"}>
                 <Checkbox style={{color: "white"}} checked={todo.completed} onClick={handleCheckboxClick} />
             </div>
-            <ListItem
-                variant="body1"
+            <div className={"listItem"}
                 style={{
                     textDecoration: todo.completed ? "line-through" : null
                 }}
             >
                 {todo.task}
-            </ListItem>
+            </div>
                 <IconButton style={{color: "white"}} className={removeButton} onClick={handleRemoveClick}>
                         <CloseIcon />
                 </IconButton>

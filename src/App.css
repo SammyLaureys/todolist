@@ -68,8 +68,17 @@ input:checked + .slider:before {
     font-size: xx-large;
 }
 
+.listItem{
+    font-size: xx-large;
+    margin-right: 5%;
+}
+
 @media (max-width: 600px) {
     .left {
         margin-left: 2%;
+    }
+    .listItem{
+        font-size: large;
+        margin-right: 3%;
     }
 }
